@@ -1,0 +1,35 @@
+﻿@model Post;
+
+<div class="row">
+    <div class="col-6 post-photo">
+        <img src="@Model.MediaLinks.First()" alt="Picture" />
+    </div>
+    <div class="col-6 border-start">
+        <div class="border-bottom post-header">
+            <div class="profile">
+                <img class="rounded-circle" src="@Model.Account.AvatartLink" />
+                <span class="fw-bold">@Model.Account.Login</span>
+            </div>
+            <i class="bi bi-three-dots end-0"></i>
+        </div>
+        <div class="post-comments">
+            @foreach (var c in Model.Comments)
+            {
+                <div class="comment">
+                    <div class="profile">
+                        <img class="rounded-circle" src="@c.Account.AvatartLink" />
+                    </div>
+                    <span class="divide">
+                        <div class="upper-part">
+                            <span class="fw-bold">@c.Account.Login</span>
+                            <span>@c.Text</span>
+                        </div>
+                        <div class="lower-part">
+                            <span class="">@c.Date</span>
+                        </div>
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+</div>
