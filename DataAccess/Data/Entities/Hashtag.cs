@@ -1,6 +1,6 @@
 ﻿using Microsoft.Identity.Client;
 
-namespace ProjectInstagram.Data.Entities
+namespace DataAccess.Data.Entities
 {
     public class Hashtag
     {

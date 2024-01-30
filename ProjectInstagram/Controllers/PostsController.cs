@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProjectInstagram.Data;
-using ProjectInstagram.Data.Entities;
 
 namespace ProjectInstagram.Controllers
 {

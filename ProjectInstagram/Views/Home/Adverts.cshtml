@@ -1,4 +1,4 @@
-﻿@model List<Post>;
+﻿@model List<PostDto>;
 
 <table class="table text-light text-center align-middle">
     <thead>
@@ -18,7 +18,7 @@
             <tr>
                 <th scope="row">@i.Id</th>
                 <td>@i.Likes</td>
-                <td>@i.Comments</td>
+                <td>@i.Comments.Count()</td>
                 <td>@i.PostTime</td>
 
                 @if (@i.IsAdvertised) {

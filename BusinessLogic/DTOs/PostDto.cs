@@ -1,19 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DataAccess.Data.Entities
+namespace BusinessLogic.DTOs
 {
-    public class Post
+    public class PostDto
     {
         public int Id { get; set; }
         public List<string> MediaLinks { get; set; }
         public string Description { get; set; }
         public int Likes { get; set; }
-        public List<Comment> Comments { get; set; }
+        public List<CommentDto> Comments { get; set; }
         public DateTime PostTime { get; set; }
         public bool IsAdvertised { get; set; }
         public int AccountId { get; set; }
-        public Account Account { get; set; }
-        public List<Hashtag> Hashtags { get; set; }
+        public AccountDto Account { get; set; }
     }
 }

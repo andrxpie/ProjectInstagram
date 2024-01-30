@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProjectInstagram.Data.Entities;
+using DataAccess.Data.Entities;
 
-namespace ProjectInstagram.Data.Configurations
+namespace DataAccess.Data.Configurations
 {
     public class HashtagCfg : IEntityTypeConfiguration<Hashtag>
     {

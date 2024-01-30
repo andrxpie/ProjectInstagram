@@ -1,4 +1,4 @@
-﻿namespace ProjectInstagram.Data.Entities
+﻿namespace DataAccess.Data.Entities
 {
     public class Account
     {

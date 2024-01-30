@@ -1,5 +1,5 @@
+using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
-using ProjectInstagram.Data;
 
 namespace ProjectInstagram
 {

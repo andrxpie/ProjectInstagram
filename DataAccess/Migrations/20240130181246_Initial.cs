@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace ProjectInstagram.Migrations
+namespace DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration
@@ -116,6 +116,7 @@ namespace ProjectInstagram.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AccountId = table.Column<int>(type: "int", nullable: false),
                     PostId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -162,7 +163,11 @@ namespace ProjectInstagram.Migrations
             migrationBuilder.InsertData(
                 table: "Accounts",
                 columns: new[] { "Id", "AvatartLink", "Bio", "Login" },
-                values: new object[] { 1, "https://i2-prod.mirror.co.uk/incoming/article11890336.ece/ALTERNATES/s1227b/Screen-Shot-2018-01-21-at-122505JPG.jpg", "STEP student", "andrxpie" });
+                values: new object[,]
+                {
+                    { 1, "https://i2-prod.mirror.co.uk/incoming/article11890336.ece/ALTERNATES/s1227b/Screen-Shot-2018-01-21-at-122505JPG.jpg", "STEP student", "andrxpie" },
+                    { 2, "https://i2-prod.mirror.co.uk/incoming/article11890336.ece/ALTERNATES/s1227b/Screen-Shot-2018-01-21-at-122505JPG.jpg", "University student", "dgmnkk" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Hashtags",
@@ -192,13 +197,13 @@ namespace ProjectInstagram.Migrations
 
             migrationBuilder.InsertData(
                 table: "Comment",
-                columns: new[] { "Id", "AccountId", "PostId", "Text" },
+                columns: new[] { "Id", "AccountId", "Date", "PostId", "Text" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, "Superoffo" },
-                    { 2, 1, 1, "Poganoffo" },
-                    { 3, 1, 1, "Positiffno" },
-                    { 4, 1, 1, "Negatiffno" }
+                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Superoffo" },
+                    { 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Poganoffo" },
+                    { 3, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Positiffno" },
+                    { 4, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Negatiffno" }
                 });
 
             migrationBuilder.CreateIndex(

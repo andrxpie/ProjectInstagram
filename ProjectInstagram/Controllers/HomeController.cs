@@ -1,5 +1,5 @@
+using DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
-using ProjectInstagram.Data;
 using ProjectInstagram.Models;
 using System.Diagnostics;
 

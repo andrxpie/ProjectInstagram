@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectInstagram.Data.Configurations;
-using ProjectInstagram.Data.Entities;
+using DataAccess.Data.Configurations;
+using DataAccess.Data.Entities;
 
-namespace ProjectInstagram.Data
+namespace DataAccess.Data
 {
     public class InstagramDbContext : DbContext
     {
@@ -12,7 +12,7 @@ namespace ProjectInstagram.Data
         {
             base.OnConfiguring(optionsBuilder);
 
-            var str = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ProjectInstagram;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            var str = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DataAccess;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             optionsBuilder.UseSqlServer(str);
         }
 
