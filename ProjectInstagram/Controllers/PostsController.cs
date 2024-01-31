@@ -1,27 +1,27 @@
-﻿using DataAccess.Data;
+﻿using AutoMapper;
+using BusinessLogic.DTOs;
+using BusinessLogic.Interfaces;
+using DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.InteropServices;
 
 namespace ProjectInstagram.Controllers
 {
     public class PostsController : Controller
     {
-        private readonly InstagramDbContext context;
+        private readonly IPostsService postService;
+        private readonly IMapper mapper;
 
-        public PostsController(InstagramDbContext context)
+        public PostsController(IPostsService postService, IMapper mapper)
         {
-            this.context = context;
+            this.postService = postService;
+            this.mapper = mapper;
         }
 
         public IActionResult Details(int id)
         {
-            var checkIsNull = context.Posts.Find(id);
-
-            if (checkIsNull == null) return NotFound();
-
-            var post = context.Posts.Where(x => x.Id == id).Include(x => x.Account).Include(x => x.Comments).First();
-
-            return View(post);
+            return View(postService.Get(id));
         }
     }
 }

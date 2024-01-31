@@ -1,3 +1,5 @@
+using AutoMapper;
+using BusinessLogic.DTOs;
 using DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using ProjectInstagram.Models;
@@ -8,10 +10,12 @@ namespace ProjectInstagram.Controllers
     public class HomeController : Controller
     {
         private readonly InstagramDbContext context;
+        private readonly IMapper mapper;
 
-        public HomeController(InstagramDbContext context)
+        public HomeController(InstagramDbContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
         public IActionResult Index()
@@ -26,7 +30,9 @@ namespace ProjectInstagram.Controllers
 
         public IActionResult Adverts()
         {
-            return View(this.context.Posts.ToList());
+            var adverts = mapper.Map<List<PostDto>>(context.Posts.ToList());
+
+            return View(adverts);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -1,3 +1,6 @@
+using BusinessLogic;
+using BusinessLogic.Services;
+using BusinessLogic.Interfaces;
 using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +16,11 @@ namespace ProjectInstagram
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<InstagramDbContext>(opts => opts.UseSqlServer(connStr));
+
+            builder.Services.AddAutoMapper();
+            builder.Services.AddFluentValidators();
+
+            builder.Services.AddCustomServices();
 
             var app = builder.Build();
 

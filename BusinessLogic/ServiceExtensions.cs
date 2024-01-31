@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using BusinessLogic.Interfaces;
+using BusinessLogic.Services;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -22,6 +24,11 @@ namespace BusinessLogic
             services.AddFluentValidationAutoValidation();
             services.AddFluentValidationClientsideAdapters();
             services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+        }
+
+        public static void AddCustomServices(this IServiceCollection services)
+        {
+            services.AddScoped<IPostsService, PostsService>();
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿@model AccountDto
+
+<div class="info row">
+    <img src="@Model.AvatartLink" class="avatar col-4" />
+    <div class="details row">
+        <span class="col-3">@Model.Login</span>
+        
+        <div class="btn-group col" role="group" aria-label="Basic example">
+            <a class="btn btn-dark" asp-controller="Accounts" asp-action="Edit">
+                <span class="fw-bold">Edit profile</span>
+            </a>
+            <a class="btn btn-dark" asp-controller="Accounts" asp-action="Archive">
+                <span class="fw-bold">View archive</span>
+            </a>
+        </div>
+
+        <a class="btn btn-dark col-1" asp-controller="Accounts" asp-action="More">
+            <i class="bi bi-gear-wide"></i>
+        </a>
+    </div>
+    <div class=""
+</div>
