@@ -11,47 +11,45 @@ namespace DataAccess.Data.Configurations
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.AccountId).IsRequired();
-            builder.Property(x => x.MediaLinks).IsRequired();
+            builder.Property(x => x.MediaLink).IsRequired();
             builder.Property(x => x.PostTime).IsRequired();
+
+            builder.HasMany(x => x.Comments).WithOne(x => x.Post).HasForeignKey(x => x.PostId).OnDelete(DeleteBehavior.NoAction);
 
             builder.HasData(new[]
             {
                 new Post { 
                     Id = 1, 
-                    MediaLinks = new List<string>
-                    {
-                        "https://i.pinimg.com/564x/56/8e/6f/568e6f0325a2388fd335b4557033e568.jpg"
-                    },
+                    MediaLink = "/posts/photo_2024-01-25_00-09-45.jpg",
                     Description = "ждав покі зупиняться",
-                    Likes = 43,
+                    Likes = new List<Account>(),
                     PostTime = new DateTime(2023, 9, 8),
-                    IsAdvertised = true,
                     AccountId = 1
                 },
                 new Post { 
                     Id = 2, 
-                    MediaLinks = new List<string>
-                    {
-                        "https://i.pinimg.com/564x/76/e6/0d/76e60df836cb6b224f4134f964681af5.jpg"
-                    },
+                    MediaLink = "/posts/340656768_598090112368658_7050585686128996291_n.jpg",
                     Description = "",
-                    Likes = 30,
+                    Likes = new List<Account>(),
                     PostTime = new DateTime(2023, 8, 18),
-                    IsAdvertised = true,
-                    AccountId = 1
+                    AccountId = 2
                 },
                 new Post { 
                     Id = 3, 
-                    MediaLinks = new List<string>
-                    {
-                        "https://i.pinimg.com/564x/50/7d/f3/507df3fa48c321a0aea520b3a76a0603.jpg"
-                    },
+                    MediaLink = "/posts/366512302_125839730594002_8033459135314310563_n.jpg",
                     Description = "",
-                    Likes = 30,
+                    Likes = new List<Account>(),
                     PostTime = new DateTime(2023, 8, 18),
-                    IsAdvertised = false,
+                    AccountId = 2
+                },
+                new Post { 
+                    Id = 4, 
+                    MediaLink = "/posts/387268421_221214574082002_7262488253037406921_n.jpg",
+                    Description = "ждав покі зупиняться",
+                    Likes = new List<Account>(),
+                    PostTime = new DateTime(2023, 9, 8),
                     AccountId = 1
-                }
+                },
             });
         }
     }

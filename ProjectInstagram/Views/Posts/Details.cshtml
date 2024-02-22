@@ -1,35 +1,133 @@
 ﻿@model PostDto;
 
+@{
+    bool isLiked = false, isSaved = false;
+}
+
 <div class="row">
-    <div class="col-6 post-photo">
-        <img src="@Model.MediaLinks.First()" alt="Picture" />
+    <div class="col-7 post-media">
+        <img src="@Model.MediaLink" alt="Picture" />
     </div>
-    <div class="col-6 border-start">
+    <div class="col-5 border-start">
         <div class="border-bottom post-header">
-            <div class="profile">
-                <img class="rounded-circle" src="@Model.Account.AvatartLink" />
+            <div>
+                <img class="rounded-circle profile" src="@Model.Account.AvatartLink" />
                 <span class="fw-bold">@Model.Account.Login</span>
             </div>
-            <i class="bi bi-three-dots end-0"></i>
+            <a class="end-0" asp-controller="Posts" asp-action="Actions" asp-route-id="@Model.Id">
+                <i class="bi bi-three-dots end-0"></i>
+            </a>
         </div>
-        <div class="post-comments">
+        <ul class="post-comments">
             @foreach (var c in Model.Comments)
             {
-                <div class="comment">
-                    <div class="profile">
-                        <img class="rounded-circle" src="@c.Account.AvatartLink" />
+                <li class="comment">
+                    <div class="left-side">
+                        <img class="rounded-circle profile" src="@c.Account.AvatartLink" />
+                        <span class="divide">
+                            <div class="upper-part">
+                                <span class="fw-bold">@c.Account.Login</span>
+                                <span>@c.Text</span>
+                            </div>
+                            <div class="lower-part">
+                                <span>@c.Date.ToString("dd.MM")</span>
+                            </div>
+                        </span>
                     </div>
-                    <span class="divide">
-                        <div class="upper-part">
-                            <span class="fw-bold">@c.Account.Login</span>
-                            <span>@c.Text</span>
-                        </div>
-                        <div class="lower-part">
-                            <span class="">@c.Date</span>
-                        </div>
-                    </span>
-                </div>
+                    <div class="right-side">
+                        <a class="btn btn-danger" asp-controller="Posts" asp-action="RemoveComment" asp-route-id="@c.Id" asp-route-postId="@Model.Id">
+                            <i class="bi bi-trash3-fill"></i>
+                        </a>
+                    </div>
+                </li>
             }
+        </ul>
+        <div class="controll-section border-top">
+            <div class="simple-actions">
+                <span class="left-side">
+                    @if (!isLiked)
+                    {
+                        <i id="like" class="bi bi-heart"></i>
+                    }
+                    else
+                    {
+                        <i id="like" class="bi bi-heart-fill"></i>
+                    }
+                </span>
+                <span class="right-side">
+                    @if (!isSaved)
+                    {
+                        <i id="save" class="bi bi-bookmark"></i>
+                    }
+                    else
+                    {
+                        <i id="save" class="bi bi-bookmark-fill"></i>
+                    }
+                </span>
+            </div>
+            <div class="likes">
+                @Model.Likes.Count()
+                @if (Model.Likes.Count() == 1)
+                {
+                    <span> like</span>
+                }
+                else
+                {
+                    <span> likes</span>
+                }
+            </div>
+            <div class="time">
+                @Model.PostTime.ToString("dd MMMM yyyy")
+            </div>
+            <form asp-action="AddComment">
+                <div class="write border-top">
+                    <div class="input-group">
+                        <input name="comment" type="text" class="form-control comment-input" placeholder="Comment..." maxlength="80">
+                        <button class="input-group-text comment-btn fw-bold">Post</button>
+                    </div>
+                    <input type="number" name="id" value="@Model.Id" hidden />
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        let like = document.getElementById("like");
+        let save = document.getElementById("save");
+
+        like.onclick = ToggleLike;
+        save.onclick = ToggleSave;
+
+        function ToggleLike(isLiked) {
+            if(isLiked) {
+                like.classList.toggle("bi-heart");
+                like.classList.toggle("bi-heart-fill");
+
+                isLiked = true;
+            }
+            else {
+                like.classList.toggle("bi-heart-fill");
+                like.classList.toggle("bi-heart");
+
+                isLiked = false;
+            }
+        }
+
+        function ToggleSave(isSaved) {
+            if (isSaved) {
+                save.classList.toggle("bi-bookmark");
+                save.classList.toggle("bi-bookmark-fill");
+
+                isSaved = false;
+            }
+            else {
+                save.classList.toggle("bi-bookmark-fill");
+                save.classList.toggle("bi-bookmark");
+
+                isSaved = true;
+            }
+        }
+    </script>
+}

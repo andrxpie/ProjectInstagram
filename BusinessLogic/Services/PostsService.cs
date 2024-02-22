@@ -23,25 +23,19 @@ namespace BusinessLogic.Services
             this.context = context;
         }
 
-        public void Create(PostDto product)
+        public void Create(PostDto post)
         {
-            context.Posts.Add(mapper.Map<Post>(product));
+            context.Posts.Add(mapper.Map<Post>(post));
             context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var product = context.Posts.Find(id);
+            var post = context.Posts.Find(id);
 
-            if (product == null) return;
+            if (post == null) return;
 
-            context.Remove(product);
-            context.SaveChanges();
-        }
-
-        public void Update(PostDto post)
-        {
-            context.Posts.Update(mapper.Map<Post>(post));
+            context.Remove(post);
             context.SaveChanges();
         }
 
@@ -60,7 +54,17 @@ namespace BusinessLogic.Services
 
         public IEnumerable<PostDto> GetAll()
         {
-            return mapper.Map<List<PostDto>>(context.Posts.Include(x => x.Account).Include(x => x.Comments).ThenInclude(x => x.Account).ToList());
+            return mapper.Map<List<PostDto>>(context.Posts
+                .Include(x => x.Account)
+                .Include(x => x.Comments)
+                .ThenInclude(x => x.Account)
+                .ToList());
+        }
+
+        public void Update(PostDto post)
+        {
+            context.Posts.Update(mapper.Map<Post>(post));
+            context.SaveChanges();
         }
     }
 }

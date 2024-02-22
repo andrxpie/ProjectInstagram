@@ -14,10 +14,11 @@ namespace BusinessLogic.Profiles
         public PostProfile()
         {
             CreateMap<AccountDto, Account>()
-                .ForMember(x => x.SavedStories, opt => opt.Ignore())
                 .ForMember(x => x.Subscribers, opt => opt.Ignore())
                 .ForMember(x => x.Subscribes, opt => opt.Ignore())
                 .ForMember(x => x.Posts, opt => opt.Ignore())
+                .ForMember(x => x.LikedPosts, opt => opt.Ignore())
+                .ForMember(x => x.SavedPosts, opt => opt.Ignore())
                 .ForMember(x => x.Comments, opt => opt.Ignore());
 
             CreateMap<Account, AccountDto>().ReverseMap();
@@ -28,22 +29,11 @@ namespace BusinessLogic.Profiles
 
             CreateMap<Comment, CommentDto>().ReverseMap();
 
-            CreateMap<HashtagDto, Hashtag>()
-                .ForMember(x => x.Posts, opt => opt.Ignore());
-
-            CreateMap<Hashtag, HashtagDto>().ReverseMap();
-
             CreateMap<PostDto, Post>()
                 .ForMember(x => x.Comments, opt => opt.Ignore())
-                .ForMember(x => x.Account, opt => opt.Ignore())
-                .ForMember(x => x.Hashtags, opt => opt.Ignore());
-
-            CreateMap<Post, PostDto>().ReverseMap();
-
-            CreateMap<StoryDto, Story>()
                 .ForMember(x => x.Account, opt => opt.Ignore());
 
-            CreateMap<Story, StoryDto>().ReverseMap();
+            CreateMap<Post, PostDto>().ReverseMap();
         }
     }
 }

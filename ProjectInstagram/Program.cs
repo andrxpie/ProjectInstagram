@@ -3,6 +3,7 @@ using BusinessLogic.Services;
 using BusinessLogic.Interfaces;
 using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace ProjectInstagram
 {
@@ -16,6 +17,9 @@ namespace ProjectInstagram
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<InstagramDbContext>(opts => opts.UseSqlServer(connStr));
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<InstagramDbContext>();
 
             builder.Services.AddAutoMapper();
             builder.Services.AddFluentValidators();
@@ -39,6 +43,7 @@ namespace ProjectInstagram
 
             app.UseAuthorization();
 
+            app.MapRazorPages();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

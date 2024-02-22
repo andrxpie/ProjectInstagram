@@ -1,7 +1,9 @@
 using AutoMapper;
 using BusinessLogic.DTOs;
+using BusinessLogic.Interfaces;
 using DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProjectInstagram.Models;
 using System.Diagnostics;
 
@@ -10,11 +12,13 @@ namespace ProjectInstagram.Controllers
     public class HomeController : Controller
     {
         private readonly InstagramDbContext context;
+        private readonly IPostsService postsService;
         private readonly IMapper mapper;
 
-        public HomeController(InstagramDbContext context, IMapper mapper)
+        public HomeController(InstagramDbContext context, IPostsService postsService, IMapper mapper)
         {
             this.context = context;
+            this.postsService = postsService;
             this.mapper = mapper;
         }
 
@@ -23,16 +27,19 @@ namespace ProjectInstagram.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult RemovePost(int id)
         {
-            return View();
+            postsService.Delete(id);
+
+            return RedirectToAction("PostList");
         }
 
-        public IActionResult Adverts()
+        public IActionResult PostList()
         {
-            var adverts = mapper.Map<List<PostDto>>(context.Posts.ToList());
+            var rawPosts = context.Posts.Include(x => x.Account).Include(x => x.Comments).ToList();
+            var posts = mapper.Map<List<PostDto>>(rawPosts);
 
-            return View(adverts);
+            return View(posts);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

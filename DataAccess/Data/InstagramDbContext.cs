@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DataAccess.Data.Configurations;
 using DataAccess.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace DataAccess.Data
 {
-    public class InstagramDbContext : DbContext
+    public class InstagramDbContext : IdentityDbContext
     {
         public InstagramDbContext(DbContextOptions options) : base(options) { }
 
@@ -22,14 +23,11 @@ namespace DataAccess.Data
 
             modelBuilder.ApplyConfiguration(new AccountCfg());
             modelBuilder.ApplyConfiguration(new PostCfg());
-            modelBuilder.ApplyConfiguration(new StoryCfg());
-            modelBuilder.ApplyConfiguration(new HashtagCfg());
             modelBuilder.ApplyConfiguration(new CommentCfg());
         }
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<Story> Stories { get; set; }
-        public DbSet<Hashtag> Hashtags { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

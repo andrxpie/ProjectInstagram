@@ -9,13 +9,13 @@ namespace BusinessLogic.DTOs
     public class PostDto
     {
         public int Id { get; set; }
-        public List<string> MediaLinks { get; set; }
+        public string MediaLink { get; set; }
         public string Description { get; set; }
-        public int Likes { get; set; }
-        public List<CommentDto> Comments { get; set; }
-        public DateTime PostTime { get; set; }
-        public bool IsAdvertised { get; set; }
         public int AccountId { get; set; }
         public AccountDto Account { get; set; }
+        public ICollection<AccountDto> Likes { get; set; }
+        public ICollection<AccountDto> Saves{ get; set; }
+        public ICollection<CommentDto> Comments { get; set; }
+        public DateTime PostTime { get; set; }
     }
 }
