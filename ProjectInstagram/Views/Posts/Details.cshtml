@@ -11,8 +11,8 @@
     <div class="col-5 border-start">
         <div class="border-bottom post-header">
             <div>
-                <img class="rounded-circle profile" src="@Model.Account.AvatartLink" />
-                <span class="fw-bold">@Model.Account.Login</span>
+                <img class="rounded-circle profile" src="@Model.User.AvatartLink" />
+                <span class="fw-bold">@Model.User.UserName</span>
             </div>
             <a class="end-0" asp-controller="Posts" asp-action="Actions" asp-route-id="@Model.Id">
                 <i class="bi bi-three-dots end-0"></i>
@@ -23,10 +23,10 @@
             {
                 <li class="comment">
                     <div class="left-side">
-                        <img class="rounded-circle profile" src="@c.Account.AvatartLink" />
+                        <img class="rounded-circle profile" src="@c.User.AvatartLink" />
                         <span class="divide">
                             <div class="upper-part">
-                                <span class="fw-bold">@c.Account.Login</span>
+                                <span class="fw-bold">@c.User.UserName</span>
                                 <span>@c.Text</span>
                             </div>
                             <div class="lower-part">

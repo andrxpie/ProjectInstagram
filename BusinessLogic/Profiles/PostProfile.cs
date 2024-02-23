@@ -13,7 +13,7 @@ namespace BusinessLogic.Profiles
     {
         public PostProfile()
         {
-            CreateMap<AccountDto, Account>()
+            CreateMap<UserDto, User>()
                 .ForMember(x => x.Subscribers, opt => opt.Ignore())
                 .ForMember(x => x.Subscribes, opt => opt.Ignore())
                 .ForMember(x => x.Posts, opt => opt.Ignore())
@@ -21,17 +21,17 @@ namespace BusinessLogic.Profiles
                 .ForMember(x => x.SavedPosts, opt => opt.Ignore())
                 .ForMember(x => x.Comments, opt => opt.Ignore());
 
-            CreateMap<Account, AccountDto>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
 
             CreateMap<CommentDto, Comment>()
-                .ForMember(x => x.Account, opt => opt.Ignore())
+                .ForMember(x => x.User, opt => opt.Ignore())
                 .ForMember(x => x.Post, opt => opt.Ignore());
 
             CreateMap<Comment, CommentDto>().ReverseMap();
 
             CreateMap<PostDto, Post>()
                 .ForMember(x => x.Comments, opt => opt.Ignore())
-                .ForMember(x => x.Account, opt => opt.Ignore());
+                .ForMember(x => x.User, opt => opt.Ignore());
 
             CreateMap<Post, PostDto>().ReverseMap();
         }

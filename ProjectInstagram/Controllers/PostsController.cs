@@ -26,11 +26,11 @@ namespace ProjectInstagram.Controllers
             return View(postService.Get(id));
         }
 
-        public IActionResult AddComment(int id, string comment)
+        public IActionResult AddComment(string userId, int postId, string text)
         {
-            commentService.Create(id, comment);
+            commentService.Create(userId, postId, text);
 
-            return RedirectToAction("Details", new { Id = id });
+            return RedirectToAction("Details", new { Id = postId });
         }
 
         public IActionResult RemoveComment(int id, int postId)

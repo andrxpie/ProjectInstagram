@@ -28,7 +28,7 @@ namespace BusinessLogic
 
         public static void AddCustomServices(this IServiceCollection services)
         {
-            services.AddScoped<IAccountService, AccountsService>();
+            services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IPostsService, PostsService>();
             services.AddScoped<ICommentsService, CommentsService>();
         }

@@ -44,8 +44,8 @@ namespace BusinessLogic.Services
             var post = context.Posts.Find(id);
             if (post == null) return null;
 
-            context.Entry(post).Reference(x => x.Account).Load();
-            context.Entry(post).Collection(x => x.Comments).Query().Include(x => x.Account).Load();
+            context.Entry(post).Reference(x => x.User).Load();
+            context.Entry(post).Collection(x => x.Comments).Query().Include(x => x.User).Load();
 
             var dto = mapper.Map<PostDto>(post);
 
@@ -55,9 +55,9 @@ namespace BusinessLogic.Services
         public IEnumerable<PostDto> GetAll()
         {
             return mapper.Map<List<PostDto>>(context.Posts
-                .Include(x => x.Account)
+                .Include(x => x.User)
                 .Include(x => x.Comments)
-                .ThenInclude(x => x.Account)
+                .ThenInclude(x => x.User)
                 .ToList());
         }
 

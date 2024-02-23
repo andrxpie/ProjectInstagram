@@ -11,7 +11,7 @@ namespace BusinessLogic.Interfaces
     {
         IEnumerable<CommentDto> GetAll();
         CommentDto Get(int id);
-        void Create(int id, string comment);
+        void Create(string userId, int postId, string text);
         void Update(CommentDto comment);
         void Delete(int id);
     }

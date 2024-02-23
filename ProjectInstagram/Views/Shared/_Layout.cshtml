@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,12 +33,15 @@
                         <span class="align-middle col">Post list</span>
                     </a>
                 </li>
+                @if (SignInManager.IsSignedIn(User))
+                {
                 <li class="nav-item">
-                    <a class="nav-link text-light fw-bold row" asp-controller="Accounts" asp-action="Profile">
+                    <a class="nav-link text-light fw-bold row" asp-controller="Users" asp-action="Profile" asp-route-id="@UserManager.GetUserId(User)">
                         <i class="bi bi-person-fill nav-icon align-middle col-1 gradient-text"></i>
                         <span class="align-middle col">Profile</span>
                     </a>
                 </li>
+                }
                 <partial name="_LoginPartial" />
             </ul>
         </nav>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(InstagramDbContext))]
-    [Migration("20240219185543_123")]
-    partial class _123
+    [Migration("20240223185316_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,77 +25,6 @@ namespace DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AccountAccount", b =>
-                {
-                    b.Property<int>("SubscribersId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SubscribesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SubscribersId", "SubscribesId");
-
-                    b.HasIndex("SubscribesId");
-
-                    b.ToTable("AccountAccount");
-                });
-
-            modelBuilder.Entity("AccountPost", b =>
-                {
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AccountId", "PostId");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("AccountPost");
-                });
-
-            modelBuilder.Entity("DataAccess.Data.Entities.Account", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AvatartLink")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Bio")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Accounts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AvatartLink = "/avatars/photo_2023-12-05_20-40-36.jpg",
-                            Bio = "STEP student",
-                            Login = "andrxpie"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AvatartLink = "/avatars/408538791_661498132822961_4968475449854852744_n.jpg",
-                            Bio = "Student of RPC NULESU",
-                            Login = "noshkalyuk"
-                        });
-                });
-
             modelBuilder.Entity("DataAccess.Data.Entities.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -103,9 +32,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AccountId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -117,11 +43,14 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
                     b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
 
@@ -129,34 +58,34 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            AccountId = 1,
                             Date = new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PostId = 1,
-                            Text = "Superoffo"
+                            Text = "ВАУУУУ",
+                            UserId = "1"
                         },
                         new
                         {
                             Id = 2,
-                            AccountId = 1,
                             Date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PostId = 1,
-                            Text = "Poganoffo"
+                            Text = "чозафотачка",
+                            UserId = "2"
                         },
                         new
                         {
                             Id = 3,
-                            AccountId = 2,
                             Date = new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PostId = 1,
-                            Text = "Positiffno"
+                            Text = "ура",
+                            UserId = "2"
                         },
                         new
                         {
                             Id = 4,
-                            AccountId = 2,
                             Date = new DateTime(2024, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PostId = 1,
-                            Text = "Negatiffno"
+                            Text = "КЛАСССССССССССС",
+                            UserId = "1"
                         });
                 });
 
@@ -167,9 +96,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -182,9 +108,13 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("PostTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
 
@@ -192,34 +122,34 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            AccountId = 1,
                             Description = "ждав покі зупиняться",
                             MediaLink = "/posts/photo_2024-01-25_00-09-45.jpg",
-                            PostTime = new DateTime(2023, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            PostTime = new DateTime(2023, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "1"
                         },
                         new
                         {
                             Id = 2,
-                            AccountId = 2,
-                            Description = "",
+                            Description = "college",
                             MediaLink = "/posts/340656768_598090112368658_7050585686128996291_n.jpg",
-                            PostTime = new DateTime(2023, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            PostTime = new DateTime(2023, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "2"
                         },
                         new
                         {
                             Id = 3,
-                            AccountId = 2,
-                            Description = "",
+                            Description = "not college",
                             MediaLink = "/posts/366512302_125839730594002_8033459135314310563_n.jpg",
-                            PostTime = new DateTime(2023, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            PostTime = new DateTime(2023, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "2"
                         },
                         new
                         {
                             Id = 4,
-                            AccountId = 1,
                             Description = "ждав покі зупиняться",
                             MediaLink = "/posts/387268421_221214574082002_7262488253037406921_n.jpg",
-                            PostTime = new DateTime(2023, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            PostTime = new DateTime(2023, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "1"
                         });
                 });
 
@@ -287,6 +217,11 @@ namespace DataAccess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -338,6 +273,10 @@ namespace DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -425,63 +364,108 @@ namespace DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("AccountAccount", b =>
+            modelBuilder.Entity("UserPost", b =>
                 {
-                    b.HasOne("DataAccess.Data.Entities.Account", null)
-                        .WithMany()
-                        .HasForeignKey("SubscribersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
 
-                    b.HasOne("DataAccess.Data.Entities.Account", null)
-                        .WithMany()
-                        .HasForeignKey("SubscribesId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("PostId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserPost");
                 });
 
-            modelBuilder.Entity("AccountPost", b =>
+            modelBuilder.Entity("UserUser", b =>
                 {
-                    b.HasOne("DataAccess.Data.Entities.Account", null)
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                    b.Property<string>("SubscribersId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasOne("DataAccess.Data.Entities.Post", null)
-                        .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                    b.Property<string>("SubscribesId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("SubscribersId", "SubscribesId");
+
+                    b.HasIndex("SubscribesId");
+
+                    b.ToTable("UserUser");
+                });
+
+            modelBuilder.Entity("DataAccess.Data.Entities.User", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("AvatartLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Bio")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0a43f003-3416-49e4-b23f-61974698e9bb",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d1a49ced-7a12-45e0-a214-309a0e5d7cc5",
+                            TwoFactorEnabled = false,
+                            UserName = "andrxpie",
+                            AvatartLink = "/avatars/photo_2023-12-05_20-40-36.jpg",
+                            Bio = "ILoveLeopard2A8"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ad274203-0efa-4e5a-ad36-0698f19262da",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "c35fb38c-4994-4a41-9938-2a3cc92d9fca",
+                            TwoFactorEnabled = false,
+                            UserName = "noshkalyuk",
+                            AvatartLink = "/avatars/408538791_661498132822961_4968475449854852744_n.jpg",
+                            Bio = "Student of RPC NULESU"
+                        });
                 });
 
             modelBuilder.Entity("DataAccess.Data.Entities.Comment", b =>
                 {
-                    b.HasOne("DataAccess.Data.Entities.Account", "Account")
-                        .WithMany("Comments")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
                     b.HasOne("DataAccess.Data.Entities.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Account");
+                    b.HasOne("DataAccess.Data.Entities.User", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Post");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DataAccess.Data.Entities.Post", b =>
                 {
-                    b.HasOne("DataAccess.Data.Entities.Account", "Account")
+                    b.HasOne("DataAccess.Data.Entities.User", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("AccountId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -535,16 +519,46 @@ namespace DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DataAccess.Data.Entities.Account", b =>
+            modelBuilder.Entity("UserPost", b =>
                 {
-                    b.Navigation("Comments");
+                    b.HasOne("DataAccess.Data.Entities.Post", null)
+                        .WithMany()
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Navigation("Posts");
+                    b.HasOne("DataAccess.Data.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("UserUser", b =>
+                {
+                    b.HasOne("DataAccess.Data.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("SubscribersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Data.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("SubscribesId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DataAccess.Data.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("DataAccess.Data.Entities.User", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

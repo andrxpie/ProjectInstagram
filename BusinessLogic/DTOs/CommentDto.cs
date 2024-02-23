@@ -11,8 +11,8 @@ namespace BusinessLogic.DTOs
         public int Id { get; set; }
         public string Text { get; set; }
         public DateTime Date { get; set; }
-        public int AccountId { get; set; }
-        public AccountDto Account { get; set; }
+        public string UserId { get; set; }
+        public UserDto User { get; set; }
         public int PostId { get; set; }
         public PostDto Post { get; set; }
     }

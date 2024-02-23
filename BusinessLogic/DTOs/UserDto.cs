@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.DTOs
 {
-    public class AccountDto
+    public class UserDto
     {
-        public int Id { get; set; }
-        public string Login { get; set; }
+        public string Id { get; set; }
+        public string UserName { get; set; }
         public string AvatartLink { get; set; }
         public string Bio { get; set; }
-        public ICollection<AccountDto> Subscribers { get; set; }
-        public ICollection<AccountDto> Subscribes { get; set; }
+        public ICollection<UserDto> Subscribers { get; set; }
+        public ICollection<UserDto> Subscribes { get; set; }
         public ICollection<PostDto> Posts { get; set; }
         public ICollection<PostDto> LikedPosts { get; set; }
         public ICollection<PostDto> SavedPosts { get; set; }

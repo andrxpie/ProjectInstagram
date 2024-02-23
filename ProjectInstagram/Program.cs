@@ -4,6 +4,7 @@ using BusinessLogic.Interfaces;
 using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using DataAccess.Data.Entities;
 
 namespace ProjectInstagram
 {
@@ -18,7 +19,7 @@ namespace ProjectInstagram
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<InstagramDbContext>(opts => opts.UseSqlServer(connStr));
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<InstagramDbContext>();
 
             builder.Services.AddAutoMapper();

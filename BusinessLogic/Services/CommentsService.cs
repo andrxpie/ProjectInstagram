@@ -23,9 +23,9 @@ namespace BusinessLogic.Services
             this.context = context;
         }
 
-        public void Create(int id, string text)
+        public void Create(string userId, int postId, string text)
         {
-            var comment = new Comment { AccountId = 1, Date = DateTime.Now, PostId = id, Text = text };
+            var comment = new Comment { UserId = userId, Date = DateTime.Now, PostId = postId, Text = text };
 
             context.Comments.Add(comment);
             context.SaveChanges();
@@ -46,7 +46,7 @@ namespace BusinessLogic.Services
             var comment = context.Comments.Find(id);
             if (comment == null) return null;
 
-            context.Entry(comment).Reference(x => x.Account).Load();
+            context.Entry(comment).Reference(x => x.User).Load();
             context.Entry(comment).Reference(x => x.Post).Load();
 
             var dto = mapper.Map<CommentDto>(comment);
@@ -56,7 +56,7 @@ namespace BusinessLogic.Services
 
         public IEnumerable<CommentDto> GetAll()
         {
-            var comment = context.Comments.Include(x => x.Account).Include(x => x.Post);
+            var comment = context.Comments.Include(x => x.User).Include(x => x.Post);
 
             return mapper.Map<List<CommentDto>>(comment);
         }

@@ -348,6 +348,14 @@ html {
             -moz-background-clip: text;
             -moz-text-fill-color: transparent;
             text-decoration: none;
+            transition: 0.2s;
+
+            &:hover {
+                text-shadow: 1px 1px 10px rgb(255, 255, 255, 0.5),
+                            -1px -1px 10px rgb(255, 255, 255, 0.5),
+                            1px -1px 10px rgb(255, 255, 255, 0.5),
+                            -1px 1px 10px rgb(255, 255, 255, 0.5);
+            }
         }
     }
 }

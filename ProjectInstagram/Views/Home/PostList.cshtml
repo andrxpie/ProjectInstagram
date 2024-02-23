@@ -18,10 +18,10 @@
             <tr>
                 <th scope="row">@i.Id</th>
 
-                <td>@i.AccountId</td>
+                <td>@i.UserId</td>
 
                 <th>
-                    <a class="account-login gradient-text" asp-controller="Accounts" asp-action="Profile" asp-route-id="@i.AccountId">@i.Account.Login</a>
+                    <a class="account-login gradient-text" asp-controller="Users" asp-action="Profile" asp-route-id="@i.UserId">@i.User.UserName</a>
                 </th>
 
                 <td>@i.Likes.Count()</td>

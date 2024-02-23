@@ -21,12 +21,12 @@ namespace DataAccess.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new AccountCfg());
+            modelBuilder.ApplyConfiguration(new UserCfg());
             modelBuilder.ApplyConfiguration(new PostCfg());
             modelBuilder.ApplyConfiguration(new CommentCfg());
         }
 
-        public DbSet<Account> Accounts { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
     }

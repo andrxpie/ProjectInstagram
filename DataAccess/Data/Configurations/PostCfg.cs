@@ -10,7 +10,7 @@ namespace DataAccess.Data.Configurations
         {
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.AccountId).IsRequired();
+            builder.Property(x => x.UserId).IsRequired();
             builder.Property(x => x.MediaLink).IsRequired();
             builder.Property(x => x.PostTime).IsRequired();
 
@@ -22,33 +22,33 @@ namespace DataAccess.Data.Configurations
                     Id = 1, 
                     MediaLink = "/posts/photo_2024-01-25_00-09-45.jpg",
                     Description = "ждав покі зупиняться",
-                    Likes = new List<Account>(),
+                    Likes = new List<User>(),
                     PostTime = new DateTime(2023, 9, 8),
-                    AccountId = 1
+                    UserId = "1"
                 },
                 new Post { 
                     Id = 2, 
                     MediaLink = "/posts/340656768_598090112368658_7050585686128996291_n.jpg",
-                    Description = "",
-                    Likes = new List<Account>(),
+                    Description = "college",
+                    Likes = new List<User>(),
                     PostTime = new DateTime(2023, 8, 18),
-                    AccountId = 2
+                    UserId = "2"
                 },
                 new Post { 
                     Id = 3, 
                     MediaLink = "/posts/366512302_125839730594002_8033459135314310563_n.jpg",
-                    Description = "",
-                    Likes = new List<Account>(),
+                    Description = "not college",
+                    Likes = new List<User>(),
                     PostTime = new DateTime(2023, 8, 18),
-                    AccountId = 2
+                    UserId = "2"
                 },
                 new Post { 
                     Id = 4, 
                     MediaLink = "/posts/387268421_221214574082002_7262488253037406921_n.jpg",
                     Description = "ждав покі зупиняться",
-                    Likes = new List<Account>(),
+                    Likes = new List<User>(),
                     PostTime = new DateTime(2023, 9, 8),
-                    AccountId = 1
+                    UserId = "1"
                 },
             });
         }

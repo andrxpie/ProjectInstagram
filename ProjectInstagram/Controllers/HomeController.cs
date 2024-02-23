@@ -32,11 +32,11 @@ namespace ProjectInstagram.Controllers
             postsService.Delete(id);
 
             return RedirectToAction("PostList");
-        }
+        }        
 
         public IActionResult PostList()
         {
-            var rawPosts = context.Posts.Include(x => x.Account).Include(x => x.Comments).ToList();
+            var rawPosts = context.Posts.Include(x => x.User).Include(x => x.Comments).ToList();
             var posts = mapper.Map<List<PostDto>>(rawPosts);
 
             return View(posts);

@@ -1,9 +1,13 @@
-﻿@model AccountDto
+﻿@model UserDto
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <div class="info row">
     <img src="@Model.AvatartLink" class="avatar col-4" />
     <div class="details row">
-        <span class="col-3">@Model.Login</span>
+        <span class="col-3">@Model.UserName</span>
         
         <div class="btn-group col" role="group" aria-label="Basic example">
             <a class="btn btn-dark" asp-controller="Accounts" asp-action="Edit">
@@ -18,5 +22,5 @@
             <i class="bi bi-gear-wide"></i>
         </a>
     </div>
-    <div class=""
+    
 </div>

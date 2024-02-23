@@ -11,10 +11,10 @@ namespace BusinessLogic.DTOs
         public int Id { get; set; }
         public string MediaLink { get; set; }
         public string Description { get; set; }
-        public int AccountId { get; set; }
-        public AccountDto Account { get; set; }
-        public ICollection<AccountDto> Likes { get; set; }
-        public ICollection<AccountDto> Saves{ get; set; }
+        public string UserId { get; set; }
+        public UserDto User { get; set; }
+        public ICollection<UserDto> Likes { get; set; }
+        public ICollection<UserDto> Saves{ get; set; }
         public ICollection<CommentDto> Comments { get; set; }
         public DateTime PostTime { get; set; }
     }
