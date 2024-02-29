@@ -247,12 +247,43 @@ html {
                         }
                     }
 
+                    .info {
+                        margin-top: 50px;
+
+                        .details {
+                            height: 4em;
+
+                            span {
+                                font-size: 20px;
+                            }
+                        }
+
+                        .bio-button {
+                            text-decoration: none;
+                            text-align: center;
+                            color: black;
+                            background: white;
+                            border-radius: 15px;
+                            padding: 16px;
+                        }
+                    }
+
                     .profile {
                         object-fit: cover;
                         height: 50px;
                         width: 50px;
                         margin-left: 20px;
                         margin-right: 12px;
+                    }
+
+                    .bio-profile {
+                        object-fit: cover;
+                        height: 200px;
+                        width: 200px;
+                        padding: 0;
+                        margin: 100px;
+                        margin: 0px 100px 50px 100px;
+                        border: 2px solid white;
                     }
                 }
             }
@@ -283,7 +314,7 @@ html {
 
                     form {
 
-                        #email-input, #password-input, #cpassword-input {
+                        #username-input, #password-input, #cpassword-input {
                             background: black;
                             color: white;
                         }
@@ -351,10 +382,7 @@ html {
             transition: 0.2s;
 
             &:hover {
-                text-shadow: 1px 1px 10px rgb(255, 255, 255, 0.5),
-                            -1px -1px 10px rgb(255, 255, 255, 0.5),
-                            1px -1px 10px rgb(255, 255, 255, 0.5),
-                            -1px 1px 10px rgb(255, 255, 255, 0.5);
+                text-shadow: 1px 1px 10px rgb(255, 255, 255, 0.5), -1px -1px 10px rgb(255, 255, 255, 0.5), 1px -1px 10px rgb(255, 255, 255, 0.5), -1px 1px 10px rgb(255, 255, 255, 0.5);
             }
         }
     }

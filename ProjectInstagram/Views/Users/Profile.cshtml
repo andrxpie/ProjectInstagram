@@ -5,22 +5,26 @@
 @inject UserManager<User> UserManager
 
 <div class="info row">
-    <img src="@Model.AvatartLink" class="avatar col-4" />
-    <div class="details row">
-        <span class="col-3">@Model.UserName</span>
-        
-        <div class="btn-group col" role="group" aria-label="Basic example">
-            <a class="btn btn-dark" asp-controller="Accounts" asp-action="Edit">
-                <span class="fw-bold">Edit profile</span>
-            </a>
-            <a class="btn btn-dark" asp-controller="Accounts" asp-action="Archive">
-                <span class="fw-bold">View archive</span>
-            </a>
-        </div>
+    <img class="col-2 rounded-circle bio-profile" src="@Model.AvatartLink" />
+    <div class="details col row">
+        <span class="col-3 align-middle">@Model.UserName</span>
 
-        <a class="btn btn-dark col-1" asp-controller="Accounts" asp-action="More">
-            <i class="bi bi-gear-wide"></i>
-        </a>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="btn-group col row" role="group" aria-label="Basic example">
+                @if (UserManager.GetUserId(User) != Model.Id)
+                {
+                    <a class="bio-button col" asp-controller="Users" asp-action="Subscribe">
+                        <span class="fw-bold">Subscribe</span>
+                    </a>
+                }
+                @if (UserManager.GetUserId(User) == Model.Id)
+                {
+                    <a class="bio-button col" asp-controller="Users" asp-action="Edit">
+                        <span class="fw-bold">Edit profile</span>
+                    </a>
+                }
+            </div>
+        }
     </div>
-    
 </div>

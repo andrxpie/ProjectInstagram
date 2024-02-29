@@ -19,7 +19,7 @@ namespace ProjectInstagram
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<InstagramDbContext>(opts => opts.UseSqlServer(connStr));
 
-            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                     .AddEntityFrameworkStores<InstagramDbContext>();
 
             builder.Services.AddAutoMapper();

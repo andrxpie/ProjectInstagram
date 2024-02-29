@@ -186,12 +186,38 @@ html > body > div.wrapper > div.container > main > .row > .border-start > .contr
 html > body > div.wrapper > div.container > main > .row > .border-start > .controll-section > form > .write > .input-group > .comment-btn:hover {
   color: #0063a4;
 }
+html > body > div.wrapper > div.container > main .info {
+  margin-top: 50px;
+}
+html > body > div.wrapper > div.container > main .info .details {
+  height: 4em;
+}
+html > body > div.wrapper > div.container > main .info .details span {
+  font-size: 20px;
+}
+html > body > div.wrapper > div.container > main .info .bio-button {
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  background: white;
+  border-radius: 15px;
+  padding: 16px;
+}
 html > body > div.wrapper > div.container > main .profile {
   object-fit: cover;
   height: 50px;
   width: 50px;
   margin-left: 20px;
   margin-right: 12px;
+}
+html > body > div.wrapper > div.container > main .bio-profile {
+  object-fit: cover;
+  height: 200px;
+  width: 200px;
+  padding: 0;
+  margin: 100px;
+  margin: 0px 100px 50px 100px;
+  border: 2px solid white;
 }
 html > body > .auth main {
   display: flex;
@@ -214,7 +240,7 @@ html > body > .auth main > .row a.text-decoration-none {
   margin-bottom: 80px;
   color: white;
 }
-html > body > .auth main > .row form #email-input, html > body > .auth main > .row form #password-input, html > body > .auth main > .row form #cpassword-input {
+html > body > .auth main > .row form #username-input, html > body > .auth main > .row form #password-input, html > body > .auth main > .row form #cpassword-input {
   background: black;
   color: white;
 }
