@@ -1,5 +1,10 @@
 ﻿@model PostDto;
 
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
 @{
     bool isLiked = false, isSaved = false;
 }
@@ -79,13 +84,14 @@
             <div class="time">
                 @Model.PostTime.ToString("dd MMMM yyyy")
             </div>
-            <form asp-action="AddComment">
+            <form asp-controller="Posts" asp-action="AddComment">
                 <div class="write border-top">
                     <div class="input-group">
-                        <input name="comment" type="text" class="form-control comment-input" placeholder="Comment..." maxlength="80">
-                        <button class="input-group-text comment-btn fw-bold">Post</button>
+                        <input type="text" name="text" class="form-control comment-input" placeholder="Comment..." maxlength="40">
+                        <input type="text" name="postId" value="@Model.Id" hidden />
+                        <input type="text" name="userId" value="@UserManager.GetUserId(User)" hidden />
+                        <button type="submit" class="input-group-text comment-btn fw-bold">Post</button>
                     </div>
-                    <input type="number" name="id" value="@Model.Id" hidden />
                 </div>
             </form>
         </div>
@@ -96,7 +102,7 @@
     <script>
         let like = document.getElementById("like");
         let save = document.getElementById("save");
-
+        
         like.onclick = ToggleLike;
         save.onclick = ToggleSave;
 

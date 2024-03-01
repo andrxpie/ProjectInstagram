@@ -26,7 +26,7 @@ namespace ProjectInstagram.Controllers
             return View(postService.Get(id));
         }
 
-        public IActionResult AddComment(string userId, int postId, string text)
+        public IActionResult AddComment(string userId, int postId, [FromForm]string text)
         {
             commentService.Create(userId, postId, text);
 

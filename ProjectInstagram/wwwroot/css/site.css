@@ -99,7 +99,7 @@ html > body > div.wrapper > div.container > main > .row > .border-start > .post-
   opacity: 70%;
 }
 html > body > div.wrapper > div.container > main > .row > .border-start > .post-comments {
-  height: 66vh;
+  height: 63vh;
   overflow: auto;
   padding: 20px;
   padding-left: 0;
