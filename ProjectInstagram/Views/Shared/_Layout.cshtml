@@ -36,7 +36,7 @@
                 @if (SignInManager.IsSignedIn(User))
                 {
                 <li class="nav-item">
-                    <a class="nav-link text-light fw-bold row" asp-controller="Users" asp-action="Profile" asp-route-id="@UserManager.GetUserId(User)">
+                    <a class="nav-link text-light fw-bold row" asp-controller="Users" asp-action="Profile">
                         <i class="bi bi-person-fill nav-icon align-middle col-1 gradient-text"></i>
                         <span class="align-middle col">Profile</span>
                     </a>

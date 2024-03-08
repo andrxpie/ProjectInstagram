@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace DataAccess.Data
 {
-    public class InstagramDbContext : IdentityDbContext
+    public class InstagramDbContext : IdentityDbContext<User>
     {
         public InstagramDbContext(DbContextOptions options) : base(options) { }
 
@@ -26,7 +26,6 @@ namespace DataAccess.Data
             modelBuilder.ApplyConfiguration(new CommentCfg());
         }
 
-        public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
     }
